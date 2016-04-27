@@ -6,7 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "ixudra/Curl": "^6.2",
+        "barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -47,5 +49,11 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }
