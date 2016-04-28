@@ -20,23 +20,7 @@ class SearchController extends Controller
     public function index()
     {
 
-        $ch = curl_init();
-        $url = 'http://apis.baidu.com/image_search/shitu/shitu_image';
-        $header = array(
-            'apikey: 您自己的apikey',
-        );
-        $data['image'] = file_get_contents('./5.jpg'); //代搜索的图片路径;
-// 添加apikey到header
-        curl_setopt($ch, CURLOPT_HTTPHEADER  , $header);
-// 添加参数
-        curl_setopt($ch, CURLOPT_POSTFIELDS,  $data['image'] );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-// 执行HTTP请求
-        curl_setopt($ch , CURLOPT_URL , $url);
-        $res = curl_exec($ch);
-        var_dump(json_decode($res));
-
-        return view('');
+        return view('index');
 
     }
 
@@ -45,14 +29,32 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search()
+    public function search(Request $request)
     {
+        $file = $request->pic;
+        if ( $request->hasFile('pic') && $file -> isValid()) {
+            $clientName = $file->getClientOriginalName();
+
+            $tmpName = $file->getFileName(); // 缓存在tmp文件夹中的文件名 例如 php8933.tmp 这种类型的.
+
+            $realPath = $file->getRealPath();    //这个表示的是缓存在tmp文件夹下的文件的绝对路径
+
+            $entension = $file->getClientOriginalExtension(); //上传文件的后缀.
+
+            $mimeTye = $file->getMimeType();//大家对mimeType应该不陌生了. 我得到的结果是 image/jpeg.
+
+            $newName = md5(date('ymdhis') . $clientName) . "." . $entension;
+
+//            $path = $file->move('upload', $newName);
+            $file->move('upload', $newName);
+        }
+
         $response = '';
-        $image = file_get_contents(public_path('assets/image/suan-ni.jpg'));
+        $image = '';
         try {
 
             $response = Curl::to('http://apis.baidu.com/image_search/shitu/shitu_image')
-                ->withData(['image' => $image])
+                ->withData(['image' => file_get_contents(public_path( 'upload/' .$newName))])
                 ->withHeader('apikey: 8685513af73aa823c44d6ef7d3bf842e')
                 ->get();
         } catch (Exception $e) {
