@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel</title>
+    <title>Search</title>
 
 
 
@@ -38,6 +38,7 @@
 <body>
 <div class="container">
     <div class="content">
+        <h1>图片搜索</h1>
         <form method="post" action="{{URL::route('search')}}"  enctype="multipart/form-data">
             {{csrf_field()}}
             <input type="file" name="pic">

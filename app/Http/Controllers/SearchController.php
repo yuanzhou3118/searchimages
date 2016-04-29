@@ -32,7 +32,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $file = $request->pic;
-        if ( $request->hasFile('pic') && $file -> isValid()) {
+//        if ( $request->hasFile('pic') && $file -> isValid()) {
             $clientName = $file->getClientOriginalName();
 
             $tmpName = $file->getFileName(); // 缓存在tmp文件夹中的文件名 例如 php8933.tmp 这种类型的.
@@ -47,17 +47,21 @@ class SearchController extends Controller
 
 //            $path = $file->move('upload', $newName);
             $file->move('upload', $newName);
-        }
+//        }
 
         $response = '';
         $image = '';
         try {
 
             $response = Curl::to('http://apis.baidu.com/image_search/shitu/shitu_image')
-                ->withData(['image' => file_get_contents(public_path( 'upload/' .$newName))])
+                ->withHeader('Content-Type:application/x-www-form-urlencoded')
                 ->withHeader('apikey: 8685513af73aa823c44d6ef7d3bf842e')
-                ->get();
+                ->withData(['image' => file_get_contents(public_path( 'upload/' .$newName))])
+                ->post();
+            var_dump($response.data);
+            return preg_replace("#\\\u([0-9a-f]+)#ie", "iconv('UCS-2', 'UTF-8', pack('H4', '\\1'))", $response);;
         } catch (Exception $e) {
+            return $e->getMessage();
             Log::error('get image info from baidu api exception,exception:' . $e->getMessage());
         }
     }
