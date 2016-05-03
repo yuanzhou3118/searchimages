@@ -39,7 +39,7 @@ class SearchController extends Controller
 
             $realPath = $file->getRealPath();    //这个表示的是缓存在tmp文件夹下的文件的绝对路径
 
-            $entension = $file->getClientOriginalExtension(); //上传文件的后缀.
+            $entension = $file->getClientOriginalExtension(); //上传文的后缀.
 
             $mimeTye = $file->getMimeType();//大家对mimeType应该不陌生了. 我得到的结果是 image/jpeg.
 
@@ -58,8 +58,12 @@ class SearchController extends Controller
                 ->withHeader('apikey: 8685513af73aa823c44d6ef7d3bf842e')
                 ->withData(['image' => file_get_contents(public_path( 'upload/' .$newName))])
                 ->post();
-            var_dump($response.data);
-            return preg_replace("#\\\u([0-9a-f]+)#ie", "iconv('UCS-2', 'UTF-8', pack('H4', '\\1'))", $response);;
+//            var_dump($response);
+//            return $response;
+            $response =  json_decode($response, true, JSON_UNESCAPED_UNICODE);
+            if($response['extra']['errno'] == 0) {
+                return view('search', ['response' => $response]);
+            }
         } catch (Exception $e) {
             return $e->getMessage();
             Log::error('get image info from baidu api exception,exception:' . $e->getMessage());
