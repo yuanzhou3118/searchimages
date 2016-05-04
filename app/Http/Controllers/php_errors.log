@@ -1,0 +1,13 @@
+[03-May-2016 17:29:55 PRC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in D:\searchimages\app\Http\Controllers\SearchController.php on line 14
+[03-May-2016 17:29:55 PRC] PHP Stack trace:
+[03-May-2016 17:29:55 PRC] PHP   1. {main}() D:\searchimages\app\Http\Controllers\SearchController.php:0
+[03-May-2016 17:30:14 PRC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in D:\searchimages\app\Http\Controllers\SearchController.php on line 14
+[03-May-2016 17:30:14 PRC] PHP Stack trace:
+[03-May-2016 17:30:14 PRC] PHP   1. {main}() D:\searchimages\app\Http\Controllers\SearchController.php:0
+[03-May-2016 17:30:24 PRC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in D:\searchimages\app\Http\Controllers\SearchController.php on line 14
+[03-May-2016 17:30:24 PRC] PHP Stack trace:
+[03-May-2016 17:30:24 PRC] PHP   1. {main}() D:\searchimages\app\Http\Controllers\SearchController.php:0
+[03-May-2016 17:35:42 PRC] PHP Warning:  Module 'gd' already loaded in Unknown on line 0
+[03-May-2016 17:35:42 PRC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in D:\searchimages\app\Http\Controllers\SearchController.php on line 14
+[03-May-2016 17:35:42 PRC] PHP Stack trace:
+[03-May-2016 17:35:42 PRC] PHP   1. {main}() D:\searchimages\app\Http\Controllers\SearchController.php:0

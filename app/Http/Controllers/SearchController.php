@@ -62,7 +62,7 @@ class SearchController extends Controller
 //            return $response;
             $response =  json_decode($response, true, JSON_UNESCAPED_UNICODE);
             if($response['extra']['errno'] == 0) {
-                return view('search', ['response' => $response]);
+                return view('search', ['response' => $response,'search_images'=> 'upload/' .$newName]);
             }
         } catch (Exception $e) {
             return $e->getMessage();

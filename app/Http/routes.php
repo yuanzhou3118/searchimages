@@ -14,6 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::any('index.html', 'SearchController@index');
+Route::any('index.html', 'SearchController@index')->name('index');
 Route::any('search.html','SearchController@search')->name('search');
 
