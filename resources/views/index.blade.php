@@ -129,12 +129,25 @@
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
-
+        .white{
+            width: 600px;
+            height: 400px;
+            background: #fff;
+            opacity: 0.3;
+            z-index: 0;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="content">
+        <div class="white"></div>
         <div>
             <img src="{{URL::asset('assets/image/Find.png')}}" class="find_icon">
             <p class="title">图片搜索</p>
